@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from './Pages/Home';
+import Product from './Pages/Product';
+import AddProduct from './Modules/Addproduct';
+import NotFound from './Pages/NotFound';
+import './Styles/App.css';
+import ImageUpload from './Modules/ImageUpload';
+import ImageGet from './Modules/ImageGet';
 
+import React, { useState, useEffect } from 'react';
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [imageId, setImageId] = useState(null);
+
+  const handleImageIdChange = (event) => {
+      setImageId(event.target.value);
+  };
   return (
-    <>
+    <div>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/add-product">Add Product</Link>
+      </nav>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            <h1>Image Upload and Display</h1>
+            <ImageUpload />
+            <div>
+                <h2>Enter Image ID to Display</h2>
+                <input type="text" value={imageId} onChange={handleImageIdChange} />
+                {imageId && <ImageGet imageId={imageId} />}
+            </div>
+        </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/add-product" element={<AddProduct />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
