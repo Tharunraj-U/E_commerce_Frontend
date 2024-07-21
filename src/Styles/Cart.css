@@ -3,9 +3,21 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #645f5f8f;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   h1 {
@@ -28,6 +40,11 @@
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .cart-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .cart-item-image {
@@ -42,6 +59,11 @@
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cart-item-image:hover img {
+    transform: scale(1.1);
   }
   
   .tooltip {
@@ -87,10 +109,12 @@
     padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
   
   .remove-button:hover {
     background-color: #ff1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .cart-summary {
@@ -111,9 +135,11 @@
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
   
   .buy-button:hover {
     background-color: #45a049;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   

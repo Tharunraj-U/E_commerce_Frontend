@@ -9,7 +9,7 @@ const Checkout = () => {
   return (
     <div className="checkout-container">
       <h1>Checkout</h1>
-      <p>Product ID: {id}</p>
+      <p>Product ID:098736625-2766366-276736636 {id}</p>
       <p>Thank you for your purchase! Your order is being processed.</p>
       <button className="continue-shopping-button" onClick={() => window.location.href = '/'}>
         Continue Shopping
