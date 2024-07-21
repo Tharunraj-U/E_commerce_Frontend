@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
-import AddProduct from './Modules/AddProduct'; // Ensure correct import
+import AddProduct from './Modules/Addproduct'; // Ensure correct import
 import NotFound from './Pages/NotFound';
 import './Styles/App.css';
 import React, { useState } from 'react';
