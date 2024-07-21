@@ -4,40 +4,45 @@ import Product from './Pages/Product';
 import AddProduct from './Modules/Addproduct';
 import NotFound from './Pages/NotFound';
 import './Styles/App.css';
-import ImageUpload from './Modules/ImageUpload';
-import ImageGet from './Modules/ImageGet';
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import About from './Pages/About';
+import ProductList from './Modules/ProductList';
+import Cart from './Pages/Cart'; // Assuming you have a Cart component
+import { CartProvider } from './Modules/CartContext';
+import Checkout from './Modules/Checkout';
+import Footer from './Pages/Footer';
 function App() {
-
   const [imageId, setImageId] = useState(null);
 
   const handleImageIdChange = (event) => {
-      setImageId(event.target.value);
+    setImageId(event.target.value);
   };
-  return (
-    <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/add-product">Add Product</Link>
-      </nav>
-      <div>
-            <h1>Image Upload and Display</h1>
-            <ImageUpload />
-            <div>
-                <h2>Enter Image ID to Display</h2>
-                <input type="text" value={imageId} onChange={handleImageIdChange} />
-                {imageId && <ImageGet imageId={imageId} />}
-            </div>
-        </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/add-product" element={<AddProduct />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+  return (
+    <CartProvider>
+      <div>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/add-product">Add Product</Link>
+          <Link to="/product-list">Product List</Link>
+          <Link to="/cart">Cart</Link>
+          <Link to="/about">About</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/product-list" element={<ProductList />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/checkout/:id" element={<Checkout />} />
+        </Routes>
+      
+      </div>
+      <Footer />
+    </CartProvider>
   );
 }
 

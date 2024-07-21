@@ -1,69 +1,78 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axiosInstance from '../axiosInstance';
+// Product.js
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import '../Styles/Product.css'; // Import the CSS file
 
-function ProductList() {
-  const [products, setProducts] = useState([]);
+const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProductDetails = async () => {
       try {
-        const response = await axiosInstance.get('/products/');
-        setProducts(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching products:', error);
+        const response = await axios.get(`http://localhost:8080/product/${id}`);
+        setProduct(response.data);
+        fetchImage(response.data.imageId);
+      } catch (err) {
+        setError(err);
         setLoading(false);
       }
     };
 
-    fetchProducts();
-  }, []);
-
-  const handleDelete = async (productId) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
+    const fetchImage = async (imageId) => {
       try {
-        await axiosInstance.delete(`/products/${productId}`);
-        // After deleting, fetch updated product list
-        const response = await axiosInstance.get('/products/');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error deleting product:', error);
+        const imageResponse = await axios.get(`http://localhost:8080/image/get/${id}`, {
+          responseType: 'blob',
+        });
+
+        const contentType = imageResponse.headers['content-type'];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const base64String = reader.result;
+          setImage(`data:${contentType};base64,${base64String.split(',')[1]}`);
+          setLoading(false);
+        };
+
+        reader.readAsDataURL(imageResponse.data);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
       }
-    }
-  };
+    };
+
+    fetchProductDetails();
+  }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error loading product details: {error.message}</div>;
   }
 
   return (
-    <div>
-      <h1>Product List</h1>
-      <Link to="/add-product">
-        <button>Add Product</button>
-      </Link>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <Link to={`/product/${product.id}`}>
-              <img src={product.imageUrl} alt={product.name} style={{ width: '100px', height: '100px' }} />
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <p>${product.price}</p>
-            </Link>
-            <div>
-              <Link to={`/edit-product/${product.id}`}>
-                <button>Edit</button>
-              </Link>
-              <button onClick={() => handleDelete(product.id)}>Delete</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="product-container">
+      <div className="product-image">
+        {image ? (
+          <img src={image} alt={product.name} />
+        ) : (
+          <div className="loading-image">Loading image...</div>
+        )}
+      </div>
+      <div className="product-details">
+        <h1 className="product-title">{product.name}</h1>
+        <p className="product-description">{product.description}</p>
+        <p className="product-price">Price: ${product.price}</p>
+        <button className="buy-button" onClick={() => window.location.href = `/checkout/${id}`}>Buy</button>
+      </div>
     </div>
   );
-}
+};
 
-export default ProductList;
+export default Product;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axiosInstance from '../axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function AddProduct() {
   const [product, setProduct] = useState({
@@ -26,8 +26,8 @@ function AddProduct() {
     try {
       // Upload image first
       const imageFormData = new FormData();
-      imageFormData.append('image', product.image);
-      const imageResponse = await axiosInstance.post('/products/upload-image', imageFormData, {
+      imageFormData.append('file', product.image); // Ensure the part name is 'file'
+      const imageResponse = await axios.post('http://localhost:8080/image/save', imageFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -40,11 +40,11 @@ function AddProduct() {
       const productData = {
         name: product.name,
         description: product.description,
-        price: product.price,
+        price: parseFloat(product.price),
         imageUrl: imageUrl,
       };
 
-      await axiosInstance.post('/products', productData);
+      await axios.post('http://localhost:8080/product/save', productData);
 
       navigate('/');
     } catch (error) {
@@ -54,7 +54,7 @@ function AddProduct() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Add Product</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -97,6 +97,7 @@ function AddProduct() {
           />
         </div>
         <button type="submit">Add Product</button>
+        
       </form>
     </div>
   );
