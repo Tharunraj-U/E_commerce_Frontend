@@ -1,15 +1,19 @@
-// Cart.js
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../Modules/CartContext';
 import '../Styles/Cart.css'; // Import the CSS file
+import Checkout from '../Modules/Checkout'; // Import the Checkout component
 
 const Cart = () => {
   const { cart, removeFromCart, getTotal } = useContext(CartContext);
+  const [showCheckout, setShowCheckout] = useState(false); // State to manage checkout visibility
 
   const handleBuy = () => {
-    // Implement buy/checkout logic here
-    alert('Proceed to checkout!');
+    setShowCheckout(true); // Set state to show Checkout component
   };
+
+  if (showCheckout) {
+    return <Checkout cart={cart} getTotal={getTotal} />; // Pass cart and getTotal as props
+  }
 
   return (
     <div className="cart-container">
@@ -26,8 +30,8 @@ const Cart = () => {
                   <div className="tooltip">{item.name}</div>
                 </div>
                 <div className="cart-item-details">
-                  <p className="cart-item-name">{item.name}</p>
-                  <p className="cart-item-price">${item.price}</p>
+                  <p className="cart-item-name">Productname: {item.name}</p>
+                  <p className="cart-item-price">Price: ${item.price}</p>
                   <p className="cart-item-quantity">Quantity: {item.quantity}</p>
                   <button className="remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
                 </div>

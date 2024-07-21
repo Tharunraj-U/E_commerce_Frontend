@@ -87,8 +87,8 @@ function AddProduct() {
           />
         </div>
         <div>
-          <label>Image:</label>
-          <input
+          <label className=''>Image:</label>
+          <input className='imgdetails'
             type="file"
             name="image"
             onChange={handleChange}

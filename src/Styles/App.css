@@ -1,35 +1,47 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: rgb(2, 0, 36); /* Fallback color */
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-  color: #333;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 35%, rgba(0,0,0,1) 100%);
+  color: #ffffff;
 }
 
+/* Container */
 .container {
   max-width: 800px;
   margin: 50px auto;
-  background-image: linear-gradient(45deg,#000000,#313030);
-  
   color: whitesmoke;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 10 8px 16px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Headings */
 h1 {
   text-align: center;
   color: #ffffff;
   margin-bottom: 20px;
 }
 
+/* Forms */
 form {
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  margin: 0 auto; 
+  margin: 0 auto;
+  color: black;
+}
+.imgdetails{
+  padding: 10px 20px;
+  background-color: #00000017;
+  color: #f4f4f4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 form div {
@@ -67,7 +79,7 @@ input[type="file"] {
 
 button[type="submit"] {
   padding: 10px 20px;
-  background-color: #a98888;
+  background-color: #5050c672;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -78,53 +90,48 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-  
 }
- 
 
+/* Navigation */
 nav {
-  width: 90%;
+  width: 100%;
   background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(33, 33, 33, 1) 50%, rgba(66, 66, 66, 1) 100%);
-  position: relative;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #444;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 1rem 3rem;
   z-index: 1000;
-  border: 1px solid #444;
 }
 
 nav a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   list-style: none;
   color: aliceblue;
   text-decoration: none;
   padding: 0 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 nav a:hover {
-  /* padding: 10px 20px; */
   background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-
   color: #fff;
-  border: none;
   border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
 }
 
+/* Heading Section */
 .heading {
   text-align: center;
   color: whitesmoke;
+  margin: 20px 0;
 }
 
+/* Button Styles */
 .button1 {
   background-color: #000000;
   font-size: 1rem;
@@ -142,12 +149,12 @@ nav a:hover {
   background-color: #333;
 }
 
+/* Details Section */
 .details {
   display: flex;
   justify-content: center;
-  
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 30px;
   padding: 30px;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -157,15 +164,15 @@ nav a:hover {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border-radius: 20px;
-  box-shadow: 20px 10px 40px rgb(179, 179, 225);
-  background-image: linear-gradient(45deg,#000000,#313030);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(45deg, #000000, #313030);
   transition: all 0.3s ease-in-out;
   width: 250px;
 }
 
 .details .box:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .details img {
@@ -173,60 +180,57 @@ nav a:hover {
   height: 250px;
   margin-bottom: 20px;
   border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .details img:hover {
-  box-shadow: 0 15px 20px rgba(0, 0, 0,0.25);
-  transform: scale(1.1);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
-.details h2, .details p {
+.details h2,
+.details p {
   margin: 10px 0;
-  text-decoration: none;
-  list-style: none;
   color: #ffffff;
   text-align: center;
 }
 
-.details  .delete{
+.details .delete {
   margin: 10px 5px;
   padding: 10px 20px;
   background-color: #d81d1d;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.details  .Edit{
+.details .delete:hover {
+  background-color: #c62828;
+}
+
+.details .Edit {
   margin: 10px 5px;
-  height: 60%;
-
-  background-color: #26ff00ed;
+  padding: 9px ;
+  background-color: #26ff00;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.details button:hover {
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-  
+.details .Edit:hover {
+  background-color: #1b5e20;
 }
 
+/* Loader */
 .load {
   font-size: 1.5rem;
   font-weight: bolder;
   color: red;
   position: relative;
-  transform: translateY(0);
-  border-radius: 50%;
   animation: spin 3.8s infinite ease-in-out;
 }
 
@@ -238,6 +242,7 @@ nav a:hover {
   border-radius: 50%;
   width: 14px;
   height: 14px;
+  background: red;
   animation: spin 3.8s infinite ease-in-out;
   animation-delay: -0.16s;
 }
@@ -250,14 +255,18 @@ nav a:hover {
     box-shadow: 0 2.5rem 0 0;
   }
 }
-.home{
+
+/* Home Section */
+.home {
   position: relative;
   text-align: center;
   top: 20px;
   font-size: 20px;
   color: whitesmoke;
 }
-.button-group{
+
+/* Button Group */
+.button-group {
   display: flex;
   align-items: center;
 }
@@ -279,4 +288,40 @@ nav a:hover {
 
 .edit-btn:active {
   transform: scale(0.95);
+}
+
+/* Footer Styles */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1b1b1b; /* Darker footer background */
+  border-top: 1px solid #333; /* Subtle border for separation */
+  margin-top: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+  font-size: 0.875rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for better separation */
+}
+
+.footer p {
+  margin: 0;
+  color: #ffffff; /* Ensuring text is visible */
+}
+
+.footer p a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer p a:hover {
+  color: #00aaff; /* Slightly lighter color on hover */
+}
+.Edit{
+
 }
