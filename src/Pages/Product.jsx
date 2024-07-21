@@ -14,7 +14,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/product/${id}`);
+        const response = await axios.get(`https://e-commerce-backend-uwpw.onrender.com/product/${id}`);
         setProduct(response.data);
         fetchImage(response.data.imageId);
       } catch (err) {
@@ -25,7 +25,7 @@ const Product = () => {
 
     const fetchImage = async (imageId) => {
       try {
-        const imageResponse = await axios.get(`http://localhost:8080/image/get/${id}`, {
+        const imageResponse = await axios.get(`https://e-commerce-backend-uwpw.onrender.com/image/get/${id}`, {
           responseType: 'blob',
         });
 
