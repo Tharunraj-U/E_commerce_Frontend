@@ -27,7 +27,7 @@ function AddProduct() {
       // Upload image first
       const imageFormData = new FormData();
       imageFormData.append('file', product.image); // Ensure the part name is 'file'
-      const imageResponse = await axios.post('http://localhost:8080/image/save', imageFormData, {
+      const imageResponse = await axios.post('https://e-commerce-backend-uwpw.onrender.com/image/save', imageFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -44,7 +44,7 @@ function AddProduct() {
         imageUrl: imageUrl,
       };
 
-      await axios.post('http://localhost:8080/product/save', productData);
+      await axios.post('https://e-commerce-backend-uwpw.onrender.com/product/save', productData);
 
       navigate('/');
     } catch (error) {

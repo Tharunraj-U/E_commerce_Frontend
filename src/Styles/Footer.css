@@ -4,10 +4,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #f8f9fa;
+    background-color: #d7dde4b4;
     border-top: 1px solid #ddd;
     margin-top: auto; /* Ensure the footer stays at the bottom */
     position: fixed;
+    height: 1%;
     bottom: 0;
     left: 0;
     right: 0;

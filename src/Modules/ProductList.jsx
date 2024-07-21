@@ -28,7 +28,7 @@ function ProductList() {
         // Fetch images for each product
         const productsWithImages = await Promise.all(productsData.map(async (product) => {
           try {
-            const imageResponse = await axios.get(`https://e-commerce-backend-xinh.onrender.com/image/get/${product.id}`, {
+            const imageResponse = await axios.get(`https://e-commerce-backend-uwpw.onrender.com/image/get/${product.id}`, {
               responseType: 'blob',
             });
             const contentType = imageResponse.headers['content-type'];
@@ -67,7 +67,7 @@ function ProductList() {
         await axiosInstance.delete(`/product/delete/${id}`);
         
         // Optionally, delete associated image (if applicable)
-        await axios.delete(`https://e-commerce-backend-xinh.onrender.com/image/delete/${id}`);
+        await axios.delete(`https://e-commerce-backend-uwpw.onrender.com/image/delete/${id}`);
         
         // Remove deleted product from state
         setProducts(products.filter(product => product.id !== id));
